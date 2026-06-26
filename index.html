@@ -26,19 +26,23 @@
         browser — nothing is uploaded, no login, no password, no risk to your account.
       </p>
 
-      <details class="how">
-        <summary>How to get your Instagram data (≈2 min)</summary>
-        <ol>
-          <li>Open Instagram → <strong>Profile → ☰ Menu → Accounts Center</strong>.</li>
-          <li>Go to <strong>Your information and permissions → Download your information</strong>.</li>
+      <div class="get-data">
+        <p class="step-intro">First time? Get your data from Instagram — it's the only safe way (no login, no risk to your account). You only do this once; after that it's just drag &amp; drop.</p>
+        <a class="btn btn-ig" href="https://accountscenter.instagram.com/info_and_permissions/dyi/" target="_blank" rel="noopener noreferrer">
+          📥 Request my data from Instagram
+        </a>
+        <ol class="steps">
+          <li><strong>Tap the button above</strong> (opens Instagram's download page — log in if asked).</li>
           <li>Choose <strong>Download or transfer information</strong> → your account → <strong>Some of your information</strong>.</li>
-          <li>Under <em>Connections</em>, select <strong>Followers and following</strong>.</li>
-          <li>Set <strong>Format: JSON</strong> and <strong>Date range: All time</strong>, then request the download.</li>
-          <li>Instagram emails you a <code>.zip</code> (usually within minutes). Upload it below.</li>
+          <li>Under <em>Connections</em>, tick <strong>Followers and following</strong>.</li>
+          <li>Set <strong>Format: JSON</strong> and <strong>Date range: All time</strong> → <strong>Create files</strong>.</li>
+          <li>Instagram emails you a <code>.zip</code> (usually a few minutes). Come back and drop it below. 👇</li>
         </ol>
-        <p class="hint">No ZIP yet? You can also drop the individual <code>followers_1.json</code> and
-        <code>following.json</code> files (found under <code>connections/followers_and_following/</code>).</p>
-      </details>
+        <details class="how">
+          <summary>Button didn't open the right page?</summary>
+          <p class="hint">Open Instagram → <strong>Profile → ☰ Menu → Accounts Center → Your information and permissions → Download your information</strong>, then follow steps 2–5 above. You can also upload just the <code>followers_1.json</code> and <code>following.json</code> files (under <code>connections/followers_and_following/</code> in the zip).</p>
+        </details>
+      </div>
 
       <div id="dropzone" class="dropzone">
         <input id="file-input" type="file" accept=".zip,.json" multiple hidden />

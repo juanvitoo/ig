@@ -88,16 +88,31 @@ h1 {
 
 .lead { color: var(--muted); margin: 0 0 18px; }
 
-.how {
+.get-data {
   background: var(--card-2);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 16px;
+  border-radius: 12px;
+  padding: 18px;
   margin-bottom: 20px;
 }
-.how summary { cursor: pointer; font-weight: 600; }
-.how ol { margin: 12px 0 6px; padding-left: 20px; }
-.how li { margin-bottom: 6px; }
+.step-intro { margin: 0 0 14px; color: var(--muted); font-size: 0.9rem; }
+.btn-ig {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 14px 16px;
+  background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d, #f77737);
+}
+.steps { margin: 16px 0 6px; padding-left: 22px; }
+.steps li { margin-bottom: 8px; }
+.how {
+  margin-top: 12px;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+.how summary { cursor: pointer; font-weight: 600; font-size: 0.9rem; color: var(--muted); }
+.how p { margin: 10px 0 0; }
 .hint { color: var(--muted); font-size: 0.86rem; }
 
 code {
