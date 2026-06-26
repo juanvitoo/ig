@@ -100,7 +100,11 @@ async function parseFiles(fileList) {
         let json;
         try { json = JSON.parse(await zip.files[p].async("string")); }
         catch { continue; }
-        const kind = classify(p, json);
+        // Classify by filename, NOT the full path: the export folder is named
+        // "followers_and_following", whose name contains "following" and would
+        // otherwise misclassify followers_*.json as a following file.
+        const base = p.split("/").pop();
+        const kind = classify(base, json);
         if (kind === "followers") result.followers.push(...extractEntries(json));
         else if (kind === "following") result.following.push(...extractEntries(json));
       }
