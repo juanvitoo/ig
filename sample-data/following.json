@@ -1,0 +1,8 @@
+{
+  "relationships_following": [
+    { "title": "", "media_list_data": [], "string_list_data": [{ "href": "https://www.instagram.com/alice_loves_cats", "value": "alice_loves_cats", "timestamp": 1699990000 }] },
+    { "title": "", "media_list_data": [], "string_list_data": [{ "href": "https://www.instagram.com/carol_codes", "value": "carol_codes", "timestamp": 1699990100 }] },
+    { "title": "", "media_list_data": [], "string_list_data": [{ "href": "https://www.instagram.com/frank_films", "value": "frank_films", "timestamp": 1699990200 }] },
+    { "title": "", "media_list_data": [], "string_list_data": [{ "href": "https://www.instagram.com/gina_games", "value": "gina_games", "timestamp": 1699990300 }] }
+  ]
+}

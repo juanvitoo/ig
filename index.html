@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unfollow Tracker · Instagram</title>
+  <meta name="description" content="Privacy-first tool to find who unfollowed, deactivated, or never followed you back on Instagram — all in your browser." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">◎</span>
+      <span>Unfollow Tracker</span>
+    </div>
+    <span class="privacy-pill" title="No servers. Your data never leaves this browser.">🔒 100% on-device</span>
+  </header>
+
+  <main>
+    <!-- Intro / upload -->
+    <section id="upload-section" class="card">
+      <h1>See who unfollowed, deactivated, or never followed you back</h1>
+      <p class="lead">
+        This tool reads your official Instagram data export. It runs entirely in your
+        browser — nothing is uploaded, no login, no password, no risk to your account.
+      </p>
+
+      <details class="how">
+        <summary>How to get your Instagram data (≈2 min)</summary>
+        <ol>
+          <li>Open Instagram → <strong>Profile → ☰ Menu → Accounts Center</strong>.</li>
+          <li>Go to <strong>Your information and permissions → Download your information</strong>.</li>
+          <li>Choose <strong>Download or transfer information</strong> → your account → <strong>Some of your information</strong>.</li>
+          <li>Under <em>Connections</em>, select <strong>Followers and following</strong>.</li>
+          <li>Set <strong>Format: JSON</strong> and <strong>Date range: All time</strong>, then request the download.</li>
+          <li>Instagram emails you a <code>.zip</code> (usually within minutes). Upload it below.</li>
+        </ol>
+        <p class="hint">No ZIP yet? You can also drop the individual <code>followers_1.json</code> and
+        <code>following.json</code> files (found under <code>connections/followers_and_following/</code>).</p>
+      </details>
+
+      <div id="dropzone" class="dropzone">
+        <input id="file-input" type="file" accept=".zip,.json" multiple hidden />
+        <div class="dz-inner">
+          <div class="dz-icon">⬆️</div>
+          <p><strong>Drop your Instagram <code>.zip</code> here</strong> or click to browse</p>
+          <p class="hint">Accepts the full export ZIP, or the followers/following JSON files.</p>
+        </div>
+      </div>
+      <p id="parse-status" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <!-- Results -->
+    <section id="results-section" class="hidden">
+      <div class="summary-grid">
+        <div class="stat">
+          <div class="stat-num" id="stat-followers">–</div>
+          <div class="stat-label">Followers</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" id="stat-following">–</div>
+          <div class="stat-label">Following</div>
+        </div>
+        <div class="stat danger">
+          <div class="stat-num" id="stat-notback">–</div>
+          <div class="stat-label">Don't follow you back</div>
+        </div>
+        <div class="stat warn">
+          <div class="stat-num" id="stat-lost">–</div>
+          <div class="stat-label">Lost since last snapshot</div>
+        </div>
+      </div>
+
+      <div class="snapshot-bar card">
+        <div>
+          <strong id="snapshot-info">No previous snapshot saved.</strong>
+          <p class="hint" id="snapshot-hint">Save a snapshot now, then come back after your next export to detect unfollowers &amp; deactivations.</p>
+        </div>
+        <div class="snapshot-actions">
+          <button id="save-snapshot" class="btn">📌 Save snapshot</button>
+          <button id="clear-snapshot" class="btn ghost">Clear history</button>
+        </div>
+      </div>
+
+      <nav class="tabs" id="tabs">
+        <button class="tab active" data-tab="lost">Unfollowers &amp; gone <span class="badge" id="badge-lost">0</span></button>
+        <button class="tab" data-tab="notback">Don't follow back <span class="badge" id="badge-notback">0</span></button>
+        <button class="tab" data-tab="fans">Fans (you don't follow) <span class="badge" id="badge-fans">0</span></button>
+        <button class="tab" data-tab="gained">New followers <span class="badge" id="badge-gained">0</span></button>
+        <button class="tab" data-tab="mutual">Mutuals <span class="badge" id="badge-mutual">0</span></button>
+      </nav>
+
+      <div class="list-toolbar">
+        <input id="search" type="search" placeholder="Search username…" />
+        <span id="list-caption" class="hint"></span>
+      </div>
+
+      <ul id="user-list" class="user-list"></ul>
+      <p id="empty-state" class="empty hidden"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Not affiliated with Instagram or Meta. Your data stays on this device.
+       <a href="#" id="reset-all">Start over</a></p>
+  </footer>
+
+  <!-- JSZip loaded lazily & optionally for .zip support; app fully works without it for JSON uploads -->
+  <script src="app.js"></script>
+</body>
+</html>
