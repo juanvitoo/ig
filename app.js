@@ -39,12 +39,19 @@ function extractEntries(json) {
   const out = [];
   for (const item of arr) {
     const sld = item && item.string_list_data;
+    let username = "", href = "", timestamp = 0;
     if (Array.isArray(sld) && sld.length) {
+      // Followers files carry the username in string_list_data[0].value;
+      // following.json omits `value` and stores the username in `title`.
       const e = sld[0];
-      if (e && e.value) out.push({ username: e.value, href: e.href || "", timestamp: e.timestamp || 0 });
-    } else if (item && item.value) {
-      out.push({ username: item.value, href: item.href || "", timestamp: item.timestamp || 0 });
+      username = e.value || item.title || "";
+      href = e.href || "";
+      timestamp = e.timestamp || 0;
+    } else if (item && (item.value || item.title)) {
+      username = item.value || item.title;
+      href = item.href || "";
     }
+    if (username) out.push({ username, href, timestamp });
   }
   return out;
 }
@@ -198,9 +205,9 @@ function userObj(key) {
 }
 
 function profileUrl(u) {
-  return u.href && /^https?:/i.test(u.href)
-    ? u.href
-    : `https://www.instagram.com/${encodeURIComponent(u.username)}/`;
+  // Build a clean web URL from the username. The export's hrefs are often
+  // /_u/<name> app deep-links that don't open well in a browser.
+  return `https://www.instagram.com/${encodeURIComponent(u.username)}/`;
 }
 
 function listFor(tab) {
